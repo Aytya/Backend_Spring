@@ -21,16 +21,16 @@ import java.security.Principal;
 @RequestMapping("/api/v1/examination/")
 public class ExaminationController {
 
-    @Autowired
-    private StudentService studentService;
-    @Autowired
-    ExamListRepository examListRepository;
-    @Autowired
-    GPARecordRepository gpaRecordRepository;
-    @Autowired
-    ProfessorService professorService;
-    @Autowired
-    AccountingRepository accountingRepository;
+//    @Autowired
+//    private StudentService studentService;
+//    @Autowired
+//    ExamListRepository examListRepository;
+//    @Autowired
+//    GPARecordRepository gpaRecordRepository;
+//    @Autowired
+//    ProfessorService professorService;
+//    @Autowired
+//    AccountingRepository accountingRepository;
 
 //    @RequestMapping("/student-result")
 //    public String StudentResult(Model model, @RequestParam int page, RedirectAttributes redirectAttributes, Principal principal) {
@@ -41,13 +41,13 @@ public class ExaminationController {
 //        return "examination/student-result-data";
 //    }
 
-    @RequestMapping("/semester")
-    public String semester(@RequestParam(value = "page", required = false, defaultValue = "0") int page,
-                           @RequestParam(value = "batch", required = false, defaultValue = "Bcs-17") String batch, Model model,
-                           Principal principal) {
-        model.addAttribute("title", "User Semester List Page");
-        System.out.print(batch);
-        model.addAttribute("batch", batch);
-        return "examination/semester";
-    }
+//    @RequestMapping("/semester")
+//    public String semester(@RequestParam(value = "page", required = false, defaultValue = "0") int page,
+//                           @RequestParam(value = "batch", required = false, defaultValue = "Bcs-17") String batch, Model model,
+//                           Principal principal) {
+//        model.addAttribute("title", "User Semester List Page");
+//        System.out.print(batch);
+//        model.addAttribute("batch", batch);
+//        return "examination/semester";
+//    }
 }

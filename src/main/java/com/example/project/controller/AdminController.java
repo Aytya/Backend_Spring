@@ -75,8 +75,8 @@ public class AdminController {
         return "PUT:: admin controller";
     }
 
-    @DeleteMapping(value = "student/delete/{id}")
-    @PreAuthorize("hasAuthority('admin:delete')")
+    @DeleteMapping(value = "student/{id}")
+//    @PreAuthorize("hasAuthority('admin:delete')")
     public void delete(@PathVariable Integer id) throws ResourceDoesNotExistException {
         studentService.deleteStudentById(id);
     }

@@ -24,8 +24,9 @@ public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Nullable
-    public String imageUrl;
+    @Lob
+    @Column(name = "imagedata",length = 1000)
+    private byte[] imageData;
     public String firstName;
     public String lastName;
     @Nullable
