@@ -1,7 +1,6 @@
 package com.example.project.config;
 
-import com.example.project.service.JWTService;
-import com.example.project.token.TokenRepository;
+import com.example.project.auth.JWTService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

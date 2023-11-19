@@ -1,9 +1,8 @@
 package com.example.project.service;
 
 import com.example.project.auth.*;
-import com.example.project.model.Role;
 import com.example.project.model.User;
-import com.example.project.model.UserRepository;
+import com.example.project.repository.UserRepository;
 import com.example.project.token.Token;
 import com.example.project.token.TokenRepository;
 import com.example.project.token.TokenType;

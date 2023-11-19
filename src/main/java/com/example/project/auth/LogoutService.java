@@ -1,4 +1,4 @@
-package com.example.project.service;
+package com.example.project.auth;
 
 import com.example.project.token.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
