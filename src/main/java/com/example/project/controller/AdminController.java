@@ -1,8 +1,12 @@
 package com.example.project.controller;
 
+import com.example.project.auth.AuthenticationResponse;
+import com.example.project.auth.RegistrationRequest;
+import com.example.project.auth.StudentRequest;
 import com.example.project.exception.ResourceAlreadyExistsException;
 import com.example.project.exception.ResourceDoesNotExistException;
-import com.example.project.model.Student;
+import com.example.project.model.User;
+import com.example.project.service.AuthenticationService;
 import com.example.project.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,11 +23,14 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private AuthenticationService authenticationService;
     @GetMapping("/students/{id}")
     @PreAuthorize("hasAuthority('admin:read')")
-    public ResponseEntity<Student> getStudentById(@PathVariable Integer id) {
+    public ResponseEntity<User> getStudentById(@PathVariable Integer id) {
         try {
-            Student student = studentService.getStudentById(id);
+            User student = studentService.getStudentById(id);
             return ResponseEntity.ok(student);
         } catch (ResourceDoesNotExistException e) {
             return ResponseEntity.notFound().build();
@@ -37,24 +44,25 @@ public class AdminController {
 
     @PostMapping("/student/new")
     @PreAuthorize("hasAuthority('admin:create')")
-    public ResponseEntity<Student> insertStudent(@RequestBody Student student) {
-        try {
-            Student insertedStudent = studentService.saveStudent(student);
-            return ResponseEntity.status(HttpStatus.CREATED).body(insertedStudent);
-        } catch (ResourceAlreadyExistsException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(null);
-        }
+    public ResponseEntity<AuthenticationResponse> insertStudent(@RequestBody StudentRequest student) {
+//        try {
+//            User insertedStudent = authenticationService.registrationStudent(student);
+//            return ResponseEntity.status(HttpStatus.CREATED).body(insertedStudent);
+//        } catch (ResourceAlreadyExistsException e) {
+//            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body(null);
+//        }
+        return ResponseEntity.ok(authenticationService.registrationStudent(student));
     }
 
     @PostMapping("/students/{id}")
     public String updateStudent(@PathVariable Integer id,
-                                @ModelAttribute("student") Student student,
+                                @ModelAttribute("student") User student,
                                 Model model) throws ResourceDoesNotExistException {
 
         // get student from database by id
-        Student existingStudent = studentService.getStudentById(id);
+        User existingStudent = studentService.getStudentById(id);
         existingStudent.setId(id);
         existingStudent.setFirstName(student.getFirstName());
         existingStudent.setLastName(student.getLastName());
@@ -66,7 +74,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "student/all")
-    public ResponseEntity<List<Student>> getStudent() {
+    public ResponseEntity<List<User>> getStudent() {
         return ResponseEntity.ok().body(studentService.getAllStudents());
     }
     @PutMapping

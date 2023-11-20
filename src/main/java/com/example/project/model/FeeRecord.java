@@ -10,18 +10,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "exam-list")
-public class ExamList {
+@Table(name = "fee-record")
+public class FeeRecord {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private boolean feeSubmitted;
     private String studentName;
     private String semester;
     private String department;
-    private String courseCode;
-    private String status;
-    private String exam;
-    private Integer examResult;
-    private String listDate;
+    private String feeType;
+    @Column(length = 100)
+    private int totalFee;
+    @Column(length = 100)
+    private int submittedFee;
+    private String feeSubmittedDate;
+    private float creditHour;
 }

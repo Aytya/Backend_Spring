@@ -14,10 +14,10 @@ import java.util.Optional;
 @Service
 public interface ExamService{
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     ExamList save(ExamList examList) throws ResourceAlreadyExistsException;
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     void deleteById(Integer id) throws ResourceDoesNotExistException;
 
 }

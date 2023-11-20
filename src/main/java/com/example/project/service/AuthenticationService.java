@@ -43,6 +43,31 @@ public class AuthenticationService {
         return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
 
     }
+
+    public AuthenticationResponse registrationStudent(StudentRequest registrationRequest) {
+        var user = User.builder()
+                .firstName(registrationRequest.getFirstName())
+                .lastName(registrationRequest.getLastName())
+                .email(registrationRequest.getEmail())
+                .password(passwordEncoder.encode(registrationRequest.getPassword()))
+                .role(registrationRequest.getRole())
+                .department(registrationRequest.getDepartment())
+                .program(registrationRequest.getProgram())
+                .yearOfSubmission(registrationRequest.getYearOfSubmission())
+                .dateOfBirth(registrationRequest.getDateOfBirth())
+                .idNo(registrationRequest.getIdNo())
+                .permanentAddress(registrationRequest.getPermanentAddress())
+                .phone(registrationRequest.getPhone())
+                .nationality(registrationRequest.getNationality())
+                .build();
+
+        var savedUser = userRepository.save(user);
+        var jwtToken = jwtService.generateToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
+        saveUserToken(savedUser, jwtToken);
+        return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
+
+    }
 //
 //    public SetAdminResponse setAdmin(SetAdminRequest request) {
 //        SetAdminResponse response = new SetAdminResponse();

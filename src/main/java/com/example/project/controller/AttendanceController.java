@@ -213,7 +213,7 @@ public class AttendanceController {
         HttpHeaders headers = new HttpHeaders();
 
         try {
-            //System.out.println("en da ipdi "+employeeid+employeeservice.findByempid(employeeid));
+//            System.out.println("en da ipdi "+employeeid+employeeservice.findByempid(employeeid));
             return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body(attendanceService.deleteBydeptid(departmentid));
         }catch (Exception e) {
             headers.add("Message", "false");

@@ -20,5 +20,5 @@ public class AccountingRecord {
     private int submitAmount;
     private Date date;
     @OneToOne
-    public Student studentId;
+    public User studentId;
 }

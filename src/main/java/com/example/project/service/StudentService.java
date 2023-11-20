@@ -2,21 +2,19 @@ package com.example.project.service;
 
 import com.example.project.exception.ResourceAlreadyExistsException;
 import com.example.project.exception.ResourceDoesNotExistException;
-import com.example.project.model.Student;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.example.project.model.User;
 
 import java.util.List;
 
 public interface StudentService {
 
-    List<Student> getAllStudents();
+    List<User> getAllStudents();
 
-    Student saveStudent(Student student) throws ResourceAlreadyExistsException;
+    User saveStudent(User student) throws ResourceAlreadyExistsException;
 
-    Student getStudentById(Integer id) throws ResourceDoesNotExistException;
+    User getStudentById(Integer id) throws ResourceDoesNotExistException;
 
-    Student updateStudent(Student student);
+    User updateStudent(User student);
 
     void deleteStudentById(Integer id) throws ResourceDoesNotExistException;
 }

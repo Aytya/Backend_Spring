@@ -1,6 +1,7 @@
 package com.example.project.model;
 
 import com.example.project.token.Token;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,10 +11,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.example.project.model.Role;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 
 @Data
 @Builder
@@ -27,6 +26,9 @@ public class User implements UserDetails {
     @GeneratedValue
     private Integer id;
 
+    @Lob
+    @Column(name = "imagedata",length = 1000)
+    private byte[] imageData;
     private String firstName;
     private String lastName;
     private String email;
@@ -34,8 +36,31 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+    @Nullable
+    public String department;
+    @Nullable
+    public String program;
+    @Nullable
+    public String yearOfSubmission;
+    @Nullable
+    public String dateOfBirth;
+    @Column(unique = true)
+    public String idNo;
+    @Column(length = 1000)
+    @Nullable
+    public String permanentAddress;
+    @Column(length = 1000)
+    @Nullable
+    public String maillingAddress;
+    @Nullable
+    public String phone;
+    @Nullable
+    public String nationality;
+    @Nullable
+    public Date date;
 
-//    @Override
+
+    //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
 ////        return List.of(new SimpleGrantedAuthority(role.name()));
 ////    }
@@ -44,9 +69,6 @@ public class User implements UserDetails {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Professor professor;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Student student;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
