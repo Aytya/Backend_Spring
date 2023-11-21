@@ -17,7 +17,7 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin("http://127.0.0.1:4200")
 @RestController
 @RequestMapping("/api/v1/admin")
 @PreAuthorize("hasRole('ADMIN')")
@@ -31,7 +31,10 @@ public class AdminController {
     @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<User> getStudentById(@PathVariable Integer id) {
         try {
+            System.out.println("AdminController");
             User student = studentService.getStudentById(id);
+            System.out.println(student);
+            System.out.println("AdminController 2");
             return ResponseEntity.ok(student);
         } catch (ResourceDoesNotExistException e) {
             return ResponseEntity.notFound().build();

@@ -41,7 +41,9 @@ public class StudentDAO implements StudentService {
     @Override
     public User getStudentById(Integer id) throws ResourceDoesNotExistException {
         Optional<User> optionalStudent = userRepository.findById(id);
+        System.out.println("StudentDAO");
         if (optionalStudent.isPresent()) {
+            System.out.println("StudentDAO isPresent");
             return optionalStudent.get();
         }else throw new ResourceDoesNotExistException(id);
     }
