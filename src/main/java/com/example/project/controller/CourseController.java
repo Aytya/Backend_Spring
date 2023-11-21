@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("http://127.0.0.1:4200")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "api/v1")
