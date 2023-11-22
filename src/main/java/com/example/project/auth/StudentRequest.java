@@ -25,7 +25,6 @@ public class StudentRequest {
     public String idNo;
     public String permanentAddress;
     public String phone;
-    @Nullable
     public String nationality;
 
 }

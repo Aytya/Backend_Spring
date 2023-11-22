@@ -1,11 +1,16 @@
 package com.example.project.controller;
 
 import com.example.project.model.Attendance;
+import com.example.project.model.AttendanceMessage;
 import com.example.project.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("http://127.0.0.1:4200")
@@ -214,4 +219,20 @@ public class AttendanceController {
     }
 
 
+//    @MessageMapping("/attendance.addAttendance")
+//    @SendTo("/topic/attendance")
+//    public AttendanceMessage addAttendance(
+//            @Payload AttendanceMessage attendanceMessage,
+//            SimpMessageHeaderAccessor headerAccessor
+//    ){
+//        headerAccessor.getSessionAttributes().put("firstName", attendanceMessage.getSender());
+//        return attendanceMessage;
+//    }
+
+//    @MessageMapping("/markAttendance")
+//    @SendTo("/topic/attendance")
+//    public String markAttendance(String message) {
+//
+//        return "Attendance Marked: " + message;
+//    }
 }

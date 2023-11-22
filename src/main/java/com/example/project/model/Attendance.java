@@ -19,7 +19,6 @@ public class Attendance {
 
     private String month;
 
-
     private String date;
 
     private String departmentId;

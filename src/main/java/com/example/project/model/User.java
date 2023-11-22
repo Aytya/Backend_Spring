@@ -28,6 +28,7 @@ public class User implements UserDetails {
 
     @Lob
     @Column(name = "imagedata",length = 1000)
+    @Nullable
     private byte[] imageData;
     private String firstName;
     private String lastName;

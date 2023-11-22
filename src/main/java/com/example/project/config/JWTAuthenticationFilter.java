@@ -29,7 +29,12 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
-        if (request.getServletPath().contains("/api/v1/auth")) {
+        if (request.getServletPath().contains("/**")) {
+            HttpServletResponse respons = (HttpServletResponse) response;
+            respons.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:4200");
+            respons.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+            respons.setHeader("Access-Control-Max-Age", "3600");
+            respons.setHeader("Access-Control-Allow-Headers", "x-requested-with");
             filterChain.doFilter(request,response);
             return;
         }
